@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { FaShoppingCart } from "react-icons/fa";
+import Link from "next/link";
 
 const Header = () => {
   return (
@@ -14,9 +15,11 @@ const Header = () => {
       </div>
       <div className="flex gap-4 items-center">
         <FaShoppingCart className="content-center cursor-pointer size-5" />
-        <Button className="bg-blue-600 text-white hover:bg-blue-700">
-          Login
-        </Button>
+        <Link href="/login">
+          <Button className="bg-blue-600 text-white hover:bg-blue-700">
+            Login
+          </Button>
+        </Link>
         <Button>Sign Up</Button>
       </div>
     </div>

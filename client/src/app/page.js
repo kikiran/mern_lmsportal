@@ -7,7 +7,6 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <main>
-        <Header />
         <Banner />
         <Tabs />
       </main>
