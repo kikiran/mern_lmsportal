@@ -1,0 +1,20 @@
+{
+  "name": "lmsportal",
+  "version": "1.0.0",
+  "description": "LMS Portal Backend",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "author": "KIRANKUMAR",
+  "license": "ISC",
+  "dependencies": {
+    "lmsportal": "file:",
+    "LMSPortalBackend": "file:",
+    "server": "file:"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
