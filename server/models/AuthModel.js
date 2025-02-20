@@ -2,6 +2,10 @@ import mongoose from "mongoose";
 
 const AuthModel = new mongoose.Schema(
   {
+    name: {
+      type: String,
+      required: true,
+    },
     email: {
       type: String,
       required: true,
@@ -14,6 +18,6 @@ const AuthModel = new mongoose.Schema(
   { timestamps: true }
 );
 
-const AuthSchema = mongoose.model("Auth", AuthModel);
+const AuthSchema = mongoose.model("User", AuthModel);
 
 export default AuthSchema;
