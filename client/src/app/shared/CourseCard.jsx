@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Image from "next/image";
+import Link from "next/link";
 
 const CourseCard = () => {
   return (
@@ -29,9 +30,11 @@ const CourseCard = () => {
       </CardHeader>
       <CardContent></CardContent>
       <CardFooter className="flex flext-row justify-normal gap-4">
-        <Button className="bg-blue-600 text-white hover:bg-blue-700">
-          Premium
-        </Button>
+        <Link href="/course">
+          <Button className="bg-blue-600 text-white hover:bg-blue-700">
+            Premium
+          </Button>
+        </Link>
         <Button variant="outline">Best Seller</Button>
       </CardFooter>
     </Card>

@@ -8,7 +8,9 @@ const Header = () => {
   return (
     <div className="flex flex-row bg-white-400 w-full h-12 shadow-md p-2 items-center justify-between">
       <div className="flex gap-5">
-        <h1 className="font-bold content-center">LMS Portal</h1>
+        <Link href="/">
+          <h1 className="font-bold content-center">LMS Portal</h1>
+        </Link>
         <form>
           <Input type="search" placeholder="Search anything" />
         </form>
