@@ -67,7 +67,7 @@ export const userLogin = async (req, res) => {
 
     res.cookie("token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      secure: process.env.NODE_ENV === "production",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
     res.status(200).json({
@@ -80,3 +80,22 @@ export const userLogin = async (req, res) => {
     });
   }
 };
+
+export const logout = async (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res
+      .send(400)
+      .json({ success: false, message: "Please enter email and password" });
+  }
+
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: (process.env.NODE_ENV = "production"),
+    samesite: 'strict'
+  });
+
+  return res.status(200).json({ success: true, message: "Successfully logout !" });
+};
+ 
