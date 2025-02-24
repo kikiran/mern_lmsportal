@@ -1,7 +1,8 @@
 import bcrypt from "bcryptjs";
 import AuthSchema from "../models/AuthModel.js";
+import cookieParser from "cookie-parser";
 
-export const createLogin = async (req, res) => {
+export const register = async (req, res) => {
   const { name, email, password } = req.body;
   if (!name || !email || !password) {
     res.status(400).json({
@@ -20,7 +21,7 @@ export const createLogin = async (req, res) => {
     const bcryptPassword = await bcrypt.hash(password, 10);
     const user = new AuthSchema({ name, email, password: bcryptPassword });
     await user.save();
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
       message: "User saved successfully",
     });
@@ -36,7 +37,7 @@ export const createLogin = async (req, res) => {
 export const userLogin = async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
-   return res.status(400).json({
+    return res.status(400).json({
       success: false,
       message: "Please enter email and password",
     });
@@ -53,14 +54,22 @@ export const userLogin = async (req, res) => {
     }
 
     //compare password
-    const comparePassword =await bcrypt.compare(password, existUser.password);
+    const comparePassword = await bcrypt.compare(password, existUser.password);
 
     if (!comparePassword) {
       return res.status(400).json({
         success: false,
-        message: "Invalid Password 😭"
-      })
+        message: "Invalid Password 😭",
+      });
     }
+
+    const token = await existUser.getJWT();
+
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
     res.status(200).json({
       success: true,
     });
